@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../Styles/header.css">
+    <link rel="stylesheet" href="../styles/register.css">
+</head>
+
+<body bgcolor="#1c1c1c">
+    <!-- #region MENU -->
+    <header>
+        <style type="text/css">
+            @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
+        </style>
+        <div class="menu_bar">
+            <a class="bt-menu"><i class="fa-solid fa-bars" onclick="javascript:mostrar()"></i></a>
+        </div>
+        <nav id="nav">
+            <ul class="ul-animado">
+                <li class="li-animado"><a href="../../index.html">Inicio</a></li>
+                <li class="li-animado"><a href="services.html">Servicios</a></li>
+                <li class="li-animado"><a href="../pages/users.html">Lista de usuarios</a></li>
+                <li class="li-animado"><a href="login.html">login</a></li>
+            </ul>
+        </nav>
+        <script type="text/javascript">
+            var nav = document.getElementById("nav");
+            var contador = 1;
+
+            function mostrar() {
+                if (contador == 1) {
+                    nav.style.left = 0;
+                    contador = 0;
+                } else {
+                    contador = 1;
+                    nav.style.left = "-100%";
+                }
+            }
+        </script>
+    </header>
+    <!-- #endregion -->
+
+    <!-- #endregion -->
+    <div class="box">
+        <form autocomplete="off" name="formRegister" onsubmit="Registrarse(event)">
+            <h2>REGISTRARSE</h2>
+            <div class="inputBox capitalize">
+                <input type="text" name="nombre" required>
+                <span>Nombre</span>
+                <i></i>
+            </div>
+            <div class="inputBox capitalize">
+                <input type="text" name="apellido" required>
+                <span>Apellidos</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="email" name="email" required>
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required="required">
+                <span>Contraseña</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <a href="#">Has olvidado tu contraseña?</a>
+                <a href="../pages/login.html">Iniciar Session</a>
+            </div>
+            <input type="submit" value="Registrarse" class="register">
+            <div style="z-index: 80; margin: 0 auto;">
+
+                <progress hidden class="progress" value="0" max="10"></progress>
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+
+
+
+        var counter = 0;
+
+        let id = 0
+
+
+
+
+        let progress = document.querySelector('progress');
+        let register = document.querySelector('.register');
+        function Registrarse(event) {
+            event.preventDefault();
+
+
+
+            register.disabled = true;
+            progress.hidden = false
+
+            var id = setInterval(function () {
+                if (counter == 10) {
+                    clearInterval(id);
+                    counter = 0;
+
+
+                    progress.setAttribute('value', counter)
+
+                    register.disabled = false
+                    progress.hidden = true
+
+
+                    id = id + 1;
+
+
+
+                    let n = document.formRegister.nombre.value
+                    let a = document.formRegister.apellido.value
+                    let e = document.formRegister.email.value
+                    let c = document.formRegister.password.value
+
+
+                    let d = localStorage.getItem('user');
+                    let da = JSON.parse(d)
+
+
+                    if (d === null) {
+                        const user = {
+                            users: [
+                                {
+                                    id: id,
+                                    nombre: n,
+                                    apellido: a,
+                                    email: e,
+                                    password: c
+                                }
+                            ]
+                        }
+
+
+
+
+                        localStorage.setItem('user', JSON.stringify(user));
+                        location.href = './login.html'
+
+                    }
+                    else {
+
+                        id = 1 + da.users.length
+
+                        const u = {
+                            id: id,
+                            nombre: n,
+                            apellido: a,
+                            email: e,
+                            password: c,
+                        }
+                        let user = da.users.concat(u)
+
+                        let users = {
+                            users: user
+                        }
+                        let emailUser = da?.users.filter(function (i) { return i?.email === e });
+
+
+                        if (emailUser.length === 0) {
+                            register.disabled = true
+                            progress.hidden = true
+
+                            localStorage.setItem('user', JSON.stringify(users, null, 4));
+                            location.href = './login.html'
+                        }
+                        else {
+                            alert("Email existene, inicia session o registrate con un nuevo email.")
+                        }
+
+                    }
+
+                }
+                else {
+                    counter = counter + 1;
+                    document.querySelector('progress').setAttribute('value', counter)
+
+
+                }
+            }, 150);
+
+
+        }
+        // localStorage.clear()
+        let d = localStorage.getItem('user');
+        let da = JSON.parse(d)
+        console.log(da.length);
+        console.log(da);
+    </script>
+</body>
+
+</html>

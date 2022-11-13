@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../Styles/header.css">
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body bgcolor="#0c1c1c">
+    <!-- #region MENU -->
+    <header>
+        <style type="text/css">
+            @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
+        </style>
+        <div class="menu_bar">
+            <a class="bt-menu"><i class="fa-solid fa-bars" onclick="javascript:mostrar()"></i></a>
+        </div>
+        <nav id="nav">
+            <ul class="ul-animado">
+                <li class="li-animado"><a href="../../index.html">Inicio</a></li>
+                <li class="li-animado"><a href="services.html">Servicios</a></li>
+                <li class="li-animado"><a href="#">Lista de usuarios</a></li>
+                <li class="li-animado"><a href="login.html">login</a></li>
+            </ul>
+        </nav>
+        <script type="text/javascript">
+            var nav = document.getElementById("nav");
+            var contador = 1;
+
+            function mostrar() {
+                if (contador == 1) {
+                    nav.style.left = 0;
+                    contador = 0;
+                } else {
+                    contador = 1;
+                    nav.style.left = "-100%";
+                }
+            }
+        </script>
+    </header>
+    <!-- #endregion -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* #region menu1 */
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* min-height: 80vh; */
+            /* background-color: transparent; */
+            border: 1px solid white;
+            position: fixed;
+            height: 80%;
+            width: 100%;
+        }
+
+
+        form {
+            position: absolute;
+            /* inset: 7px; */
+            width: 75%;
+            background: #28292de8;
+            padding: 50px 40px;
+            border-radius: 8px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+        @media screen and (max-width:500px) {
+            form {
+                width: 100%;
+            }
+
+            .inputBox {
+                margin: 15px 0 !important;
+            }
+
+        }
+
+
+        h2 {
+            color: #45f3ff;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.1em;
+        }
+
+        .inputBox {
+            position: relative;
+            /* width: 300px; */
+            margin: 15px 30%;
+
+        }
+
+        .inputBox input {
+            position: relative;
+            width: 100%;
+            padding: 20px 10px 10px;
+            background: transparent;
+            outline: none;
+            box-shadow: none;
+            border: none;
+            color: #23242a;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+            z-index: 10;
+        }
+
+        .inputBox span {
+            position: absolute;
+            left: 0;
+            padding: 20px 10px 10px;
+            pointer-events: none;
+            font-size: 1em;
+            color: #8f8f8f;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+        }
+
+        .inputBox input:valid~span,
+        .inputBox input:focus~span {
+            color: #45f3ff;
+            transform: translateX(0px) translateY(-34px);
+            font-size: 0.75em;
+        }
+
+        .inputBox i {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: #45f3ff;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.5s;
+            pointer-events: none;
+            z-index: 9;
+        }
+
+        .inputBox input:valid~i,
+        .inputBox input:focus~i {
+            height: 44px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .links a {
+            margin: 10px 0;
+            font-size: 0.75em;
+            color: #8f8f8f;
+            text-decoration: beige;
+        }
+
+        .links a:hover,
+        .links a:nth-child(2) {
+            color: #45f3ff;
+        }
+
+        input[type="submit"] {
+            border: none;
+            outline: none;
+            padding: 11px 25px;
+            background: #45f3ff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            margin: 10px auto;
+        }
+
+        input[type="submit"]:active {
+            opacity: 0.8;
+        }
+
+        .closeModal {
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            margin: 10px 20px;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+        }
+
+
+
+        header span {
+            /* -webkit-text-stroke: 1px black; */
+            color: transparent;
+            background-image: linear-gradient(180deg, #ffe993, #eb831c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            font-size: 70px;
+        }
+    </style>
+
+
+    <div class="modal" id="modal">
+
+    </div>
+
+    <header style="text-align: center;">
+        <span>Usuarios&nbsp;</span>
+    </header>
+    <table class="tableUsers">
+        <thead>
+            <tr>
+                <th> # </th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="userData">
+        </tbody>
+    </table>
+    <style>
+        .tableUsers {
+            background: white;
+            width: 50%;
+            margin: 0 auto;
+            margin-top: 2%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .tableUsers th {
+            background-color: black;
+            height: 35px;
+            border-bottom: 1px solid rgb(210, 220, 250);
+            color: rgb(120, 120, 120);
+        }
+
+
+        .tableUsers td {
+            color: rgba(100, 100, 100, 60);
+            height: 30px;
+            border: 0.5px solid rgba(240, 240, 240, 10);
+        }
+
+
+        /*Pseudo-clases*/
+        .tableUsers th:hover {
+            background-color: rgba(20, 20, 20, 90);
+        }
+
+        .tableUsers tr:hover {
+            background-color: #ffe6ba;
+        }
+
+        .tableUsers>tbody>tr:nth-child(2n+1) {
+            color: #000000;
+            background-color: lightgray;
+        }
+    </style>
+
+    <script>
+
+
+
+        const cat = localStorage.getItem('user');
+        const c = JSON.parse(cat)
+        console.log(c.users);
+        function editUser(id) {
+            document.getElementById('modal').style.display = 'flex'
+
+            console.log(id);
+
+
+
+            c.users.forEach(element => {
+                if (element.id == id) {
+                    console.log(element);
+
+                    document.getElementById('modal').innerHTML = `
+            <form name="formUpdate" onsubmit="updateUser(event,${id})">
+            <i class="fa-solid fa-xmark closeModal" onclick="javascript:document.getElementById('modal').style.display = 'none'"></i>
+            <h2>Actualizar datos</h2>
+            <div class="inputBox">
+                <input type="text" name="nombre" required value="${element?.nombre}">
+                <span>Nombre</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="apellidos" required value="${element?.apellido}">
+                <span>Apellio</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="email" name="email" required value="${element?.email}">
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required value="${element?.password}">
+                <span>Contraseña</span>
+                <i></i>
+            </div>
+            <input type="submit" value="Actualizar datos" >
+        </form>
+            `
+
+
+
+                }
+            });
+
+            // let n = document.formRegister.nombre.value
+            //             let a = document.formRegister.apellido.value
+            //             let e = document.formRegister.email.value
+            //             let c = document.formRegister.password.value
+        }
+
+
+        let y = c.users.map(function (c) {
+            return `
+            <tr>
+                <td>${c.id}</td>
+                <td>${c.nombre}</td>
+                <td>${c.apellido}</td>
+                <td>${c.email}</td>
+                <td>
+                    <button onclick="editUser(${c.id})">Editar</button>  
+                    <button type="submit" onclick="deleteUser(${c.id})">Eliminar</button>
+                </td>
+            </tr>
+            `
+        })
+        // console.log(y);
+
+
+
+        document.querySelector('.userData').innerHTML = `${y.join("")}`;
+
+
+
+
+
+        // c.forEach(c => {
+        //     console.log(c.id);
+        //     let data =
+
+        // });
+        function deleteUser(id) {
+            c.forEach(element => {
+                console.log(element);
+                if (element.id == id) {
+                    if (confirm(`estas seguro de eliminar a ${element.nombre} ${element.apellido}?`) == true) {
+
+                        deleteUser = c.filter(function (i) { return i.id !== id });
+                        localStorage.setItem('user', JSON.stringify(deleteUser, null, 4));
+                        location.reload()
+                    }
+                }
+            });
+
+
+
+
+        }
+
+
+
+        function updateUser(event, id) {
+            event.preventDefault();
+
+            let nombre = document.formUpdate.nombre.value
+            let apellidos = document.formUpdate.apellidos.value
+            let email = document.formUpdate.email.value
+            let password = document.formUpdate.password.value
+            console.log(nombre, apellidos, email, password);
+
+
+            c.users.forEach(element => {
+                if (element.id == id) {
+                    // console.log(element);
+                    // console.log(element);
+                    element.nombre = nombre;
+                    element.apellido = apellidos;
+                    element.email = email;
+                    element.password = password
+
+
+
+                }
+
+                var f = c.users.map(function (dataMap) {
+
+
+                    return dataMap
+                })
+
+
+
+                console.log(f);
+                // document.getElementById("numero").innerHTML = `${f.join("")}`;
+
+                // console.log(element);
+                // console.log(f);
+                let users = {
+                            users: f
+                        }
+                localStorage.setItem('user', JSON.stringify(users, null, 4));
+
+                let d = localStorage.getItem('user');
+
+
+                let da = JSON.parse(d)
+                // console.log(da);
+                // localStorage.setItem('user', JSON.stringify(element));
+            });
+        }
+
+        // document.getElementById('nombre').textContent = `${c.nombre} ${c.apellido}`;
+        // document.getElementById('email').innerHTML = `<td>${c.email}</td>`
+
+
+        // console.log(c);
+    </script>
+
+</body>
+
+</html>

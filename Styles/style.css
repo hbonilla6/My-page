@@ -1,0 +1,119 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+}
+/* #region Contenido 2 */
+.card-beach{
+    margin: 0 auto;
+    width: 250px;
+    height: 300px;
+    background-color: #333;
+    border-radius: 10px;
+    outline: 1px solid rgba(225, 225, 225, .5);
+    outline-offset: -8px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .1);
+    position: relative;
+    overflow: hidden;
+    
+  }
+  
+  .card-image-beach{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .6;
+    transition: transform .75s;
+  }
+  
+  .card-beach:hover .card-image-beach{
+    transform: scale(1.15);
+  }
+  
+  .card-title{
+    color: #dbd5d5;
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    font-size: 20px;
+    text-shadow: 0 0 1px rgba(0, 0, 0, .5);
+  }
+  /* #endregion */
+  
+
+
+  .wrap-container {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+  
+
+
+
+
+
+
+  .container_caja_loading {
+    margin: 0;
+    padding: 0;
+    background: #121212;
+    color: #fff;
+    min-height: 90vh;
+  }
+  
+  .container_caja_loading, .cubo, .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .caja_cubo {
+    width: 20%;
+    height: 300px;
+  }
+  .cubo{
+    height: 60%;
+    transform-style: preserve-3d;
+    animation: rotar 8s linear infinite;
+  }
+  
+  .cubo > span{
+    position: absolute;
+    width: 4em;
+    height: 4em;
+    border: 2px solid white;
+    box-shadow: inset 0px 0px  15px 15px rgba(67, 195, 255, .2), 0px 0px 40px 1px rgba(67, 195, 255, .15);
+    border-radius: 4px;
+  }
+  
+  .cubo> span:nth-child(1){ transform: rotateY(90deg) translateZ(2em);}
+  .cubo> span:nth-child(2){transform: rotateY(90deg) translateZ(-2em);}
+  .cubo> span:nth-child(3){transform: rotateY(90deg) translateZ(-2em);}
+  .cubo> span:nth-child(4){transform: rotateY(90deg) translateZ(2em);}
+  .cubo> span:nth-child(5){transform: translateZ(-2em);}
+  .cubo> span:nth-child(6){transform: translateZ(2em);}
+  
+  .loading{
+    height: 40%;
+  }
+  
+  @keyframes rotar{
+    0%{transform: rotateY(0deg) rotateX(0deg);}
+    50%{transform: rotateY(360deg) rotateX(360deg);}
+    100%{transform: rotateY(0deg) rotateX(0deg);}
+  }
+  
+  
+  h1, p{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-size: 10px;
+  
+  }

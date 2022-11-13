@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../../Styles/header.css">
+</head>
+
+<body bgcolor="#1c1c1c">
+    <!-- #region MENU -->
+    <header>
+        <style type="text/css">
+            @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
+        </style>
+        <div class="menu_bar">
+            <a class="bt-menu"><i class="fa-solid fa-bars" onclick="javascript:mostrar()"></i></a>
+        </div>
+        <nav id="nav">
+            <ul class="ul-animado">
+                <li class="li-animado"><a href="../../index.html">Inicio</a></li>
+                <li class="li-animado"><a href="paginas_externas/pages/services.html">Servicios</a></li>
+                <li class="li-animado"><a href="users.html">Lista de usuarios</a></li>
+                <li class="li-animado"><a href="#">login</a></li>
+            </ul>
+        </nav>
+        <script type="text/javascript">
+            var nav = document.getElementById("nav");
+            var contador = 1;
+
+            function mostrar() {
+                if (contador == 1) {
+                    nav.style.left = 0;
+                    contador = 0;
+                } else {
+                    contador = 1;
+                    nav.style.left = "-100%";
+                }
+            }
+        </script>
+    </header>
+    <!-- #endregion -->
+
+
+
+    <br>
+    <div class="box">
+        <form autocomplete="off" name="formLogin" onsubmit="login(event)">
+            <h2>Iniciar Seccion</h2>
+            <div class="inputBox">
+                <input type="text" required name="email">
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" required name="password">
+                <span>Contraseña</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <a href="#">Has olvidado tu contraseña?</a>
+                <a href="../pages/register.html">REGISTRARSE</a>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        function login(event) {
+            event.preventDefault();
+            let user = localStorage.getItem('user');
+
+            const data = JSON.parse(user)
+
+            let email = document.formLogin?.email?.value
+            let password = document.formLogin?.password?.value
+            if (data || data !== null) {
+                let loginUser = data?.users.filter(function (i) { return i?.email === email });
+
+
+                 if (loginUser[0]?.email !== email) {
+                    alert("Tu email es incorrecto")
+                }
+                else if (loginUser[0]?.password != password) {
+                    alert("Tu contraseña es incorrecta")
+                }
+                else if (loginUser[0]?.email === email && loginUser[0]?.password === password) {
+                    location.href = '../../index.html'
+                }
+                else{
+                    alert("Tus datos son incorrectos, te invitamos a que te registres. ❤")
+                }
+            } else {
+                alert("Tus datos son invalidos, te invitamos a que te registres. ❤")
+            }
+        }
+    </script>
+</body>
+
+</html>

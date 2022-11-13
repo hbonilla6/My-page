@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.ul-animado {
+    display: flex;
+    list-style: none;
+    padding: 25px 0;
+    border: 0.1px solid #099fff;
+    background-color: #181818;
+    box-shadow: 0 4px 8px 0 #00ffff, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.li-animado {
+    margin: auto;
+    font-size: 20px;
+}
+
+.li-animado::after {
+    content: "";
+    display: block;
+
+    height: 1.8px;
+    background-color: #00ffff;
+    transform: scaleX(0);
+    transition: 0.25s;
+}
+
+.li-animado:hover::after {
+    transform: scaleX(1);
+}
+
+
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header {
+    height: 80px;
+}
+
+
+header nav {
+    z-index: 999;
+    position: fixed;
+    margin-bottom: 100px;
+    /* height: 100px; */
+    width: 100%;
+}
+
+
+
+
+.menu_bar {
+    display: none;
+}
+
+@media screen and (max-width:500px) {
+    header nav {
+        height: 100%;
+        width: 100%;
+        top: 50px;
+        border-top: 1px solid gray;
+        text-align: center;
+        background-color: #181818;
+
+        /* position: fixed; */
+        position: fixed;
+        transition: 0.5s;
+    }
+
+    .ul-animado {
+        display: block;
+        padding: 0px;
+        border: none;
+        box-shadow: none;
+
+    }
+
+    .li-animado {
+        padding: 10px;
+    }
+    header {
+        height: 50px;
+    }
+
+    nav {
+        left: -100%;
+
+    }
+
+    header nav ul li {
+        float: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .3);
+    }
+
+    .menu_bar {
+        
+        display: block;
+        position: fixed;
+        width: 100%;
+        margin-bottom: 100px;
+        /* bottom: 100px; */
+    }
+
+    .menu_bar .bt-menu {
+        display: block;
+        padding: 1em;
+        background: #181818;
+        font-size: 25px;
+    }
+
+    .li-animado:hover {
+        background-color: gray;
+    }
+
+    .li-animado::after {
+        height: 0;
+    }
+
+    .menu_bar i {
+        cursor: pointer;
+        float: right;
+        font-size: 30px;
+
+        margin-top: -15px;
+    }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="Styles/style.css" />
+  <link rel="stylesheet" href="Styles/header.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" /> -->
+</head>
+
+<body bgcolor="#1c1c1c">
+
+  <!-- #region MENU -->
+  <header>
+    <style type="text/css">
+      @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
+    </style>
+    <div class="menu_bar">
+      <a class="bt-menu"><i class="fa-solid fa-bars" onclick="javascript:mostrar()"></i></a>
+    </div>
+    <nav id="nav">
+      <ul class="ul-animado">
+        <li class="li-animado"><a href="#">Inicio</a></li>
+        <li class="li-animado"><a href="paginas_externas/pages/services.html">Servicios</a></li>
+        <li class="li-animado"><a href="paginas_externas/pages/users.html">Lista de usuarios</a></li>
+        <li class="li-animado"><a href="paginas_externas/pages/login.html">login</a></li>
+      </ul>
+    </nav>
+    <script type="text/javascript">
+      var nav = document.getElementById("nav");
+      var contador = 1;
+
+      function mostrar() {
+        if (contador == 1) {
+          nav.style.left = 0;
+          contador = 0;
+        } else {
+          contador = 1;
+          nav.style.left = "-100%";
+        }
+      }
+    </script>
+  </header>
+  <!-- #endregion -->
+
+  <div class="wrap-container items" >
+  </div>
+
+  <div class="container_caja_loading">
+    <div class="caja_cubo">
+      <div class="cubo">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="loading">
+        <div>
+          <h1>Cargando</h1>
+          <p>...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function myFunction(nombre, origen) {
+      console.log(nombre)
+    }
+  </script>
+  <script type="module" src="Javascript_index/javaScript.js"></script>
+</body>
+
+
+</html>
