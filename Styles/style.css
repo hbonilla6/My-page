@@ -46,16 +46,12 @@
 
 
   .wrap-container {
-    display: flex;
+    display: none;
     gap: 10px;
     padding: 20px;
     flex-wrap: wrap;
   }
   
-
-
-
-
 
 
   .container_caja_loading {
