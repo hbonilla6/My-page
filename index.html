@@ -7,12 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <link rel="stylesheet" href="Styles/style.css" />
-  <link rel="stylesheet" href="Styles/header.css">
+  <link rel="stylesheet" href="Styles/header.css" />
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" /> -->
 </head>
 
 <body bgcolor="#1c1c1c">
-
   <!-- #region MENU -->
   <header>
     <style type="text/css">
@@ -24,9 +23,15 @@
     <nav id="nav">
       <ul class="ul-animado">
         <li class="li-animado"><a href="#">Inicio</a></li>
-        <li class="li-animado"><a href="paginas_externas/pages/services.html">Servicios</a></li>
-        <li class="li-animado"><a href="paginas_externas/pages/users.html">Lista de usuarios</a></li>
-        <li class="li-animado"><a href="paginas_externas/pages/login.html">login</a></li>
+        <li class="li-animado">
+          <a href="paginas_externas/pages/services.html">Servicios</a>
+        </li>
+        <li class="li-animado">
+          <a href="paginas_externas/pages/users.html">Lista de usuarios</a>
+        </li>
+        <li class="li-animado">
+          <a href="paginas_externas/pages/login.html">login</a>
+        </li>
       </ul>
     </nav>
     <script type="text/javascript">
@@ -46,8 +51,7 @@
   </header>
   <!-- #endregion -->
 
-  <div class="wrap-container items" >
-  </div>
+  <div class="wrap-container items"></div>
 
   <div class="container_caja_loading">
     <div class="caja_cubo">
@@ -69,12 +73,63 @@
   </div>
 
   <script>
+    let temporizadorData = 0;
+    let items = document.querySelector(".items");
+    let loading = document.querySelector(".container_caja_loading");
+
+    async function getDataCharacter() {
+      const url = await fetch(`https://rickandmortyapi.com/api/character`);
+      const data = url.json();
+
+      return data;
+    }
+
+    async function initApp() {
+      try {
+        const getDataC = await getDataCharacter();
+
+        var id = setInterval(function () {
+          if (temporizadorData == 10) {
+            clearInterval(id);
+            temporizadorData = 0;
+
+            if (getDataC) {
+              items.style.display = "flex";
+              loading.style.display = "none";
+            }
+          } else {
+            temporizadorData++;
+          }
+        }, 125);
+
+        var f = getDataC?.results.map(function (dataMap) {
+          let h;
+          h = `
+        <div class="card-beach">
+    <img
+      src="${`${dataMap?.image}`}"
+      alt=""  
+      class="card-image-beach"
+    />
+    <h3 class="card-title" onclick="myFunction('${dataMap?.name}', '${dataMap?.origin.name
+            }')">${dataMap?.name}</h3>
+        </div>
+        `;
+
+          return h;
+        });
+
+        items.innerHTML = `${f?.join("")}`;
+      } catch (e) { }
+    }
+
+    initApp();
+
+
     function myFunction(nombre, origen) {
       console.log(nombre)
     }
   </script>
-  <script type="module" src="Javascript_index/javaScript.js"></script>
 </body>
-
 
 </html>
