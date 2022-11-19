@@ -59,7 +59,7 @@
     padding: 0;
     background: #121212;
     color: #fff;
-    min-height: 90vh;
+    min-height: 88vh;
   }
   
   .container_caja_loading, .cubo, .loading {
@@ -113,3 +113,9 @@
     font-size: 10px;
   
   }
+
+
+
+
+
+  
