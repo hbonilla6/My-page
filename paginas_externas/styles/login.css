@@ -84,6 +84,10 @@ h2 {
   width: 300px;
   margin-top: 35px;
 }
+.inputBox:has(input:required) span::after{
+  content: " *";
+  color: red;
+}
 
 .inputBox input {
   position: relative;

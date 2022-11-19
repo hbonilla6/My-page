@@ -8,7 +8,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="Styles/style.css" />
   <link rel="stylesheet" href="Styles/header.css" />
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 </head>
 
 <body bgcolor="#1c1c1c">
@@ -51,9 +51,76 @@
   </header>
   <!-- #endregion -->
 
-  <div class="wrap-container items"></div>
 
-  <div class="container_caja_loading">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal 
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="wrap-container items"></div>
+
+
+
+    <div class="container_caja_loading">
     <div class="caja_cubo">
       <div class="cubo">
         <span></span>
@@ -72,64 +139,63 @@
     </div>
   </div>
 
-  <script>
-    let temporizadorData = 0;
-    let items = document.querySelector(".items");
-    let loading = document.querySelector(".container_caja_loading");
+    <script>
+      let temporizadorData = 0;
+      let items = document.querySelector(".items");
+      let loading = document.querySelector(".container_caja_loading");
 
-    async function getDataCharacter() {
-      const url = await fetch(`https://rickandmortyapi.com/api/character`);
-      const data = url.json();
+      async function getDataCharacter() {
+        const url = await fetch(`https://rickandmortyapi.com/api/character`);
+        const data = url.json();
 
-      return data;
-    }
+        return data;
+      }
 
-    async function initApp() {
-      try {
-        const getDataC = await getDataCharacter();
+      async function initApp() {
+        try {
+          const getDataC = await getDataCharacter();
 
-        var id = setInterval(function () {
-          if (temporizadorData == 10) {
-            clearInterval(id);
-            temporizadorData = 0;
+          var id = setInterval(function () {
+            if (temporizadorData == 10) {
+              clearInterval(id);
+              temporizadorData = 0;
 
-            if (getDataC) {
-              items.style.display = "flex";
-              loading.style.display = "none";
+              if (getDataC) {
+                items.style.display = "flex";
+                loading.style.display = "none";
+              }
+            } else {
+              temporizadorData++;
             }
-          } else {
-            temporizadorData++;
-          }
-        }, 125);
+          }, 125);
 
-        var f = getDataC?.results.map(function (dataMap) {
-          let h;
-          h = `
+          var f = getDataC?.results.map(function (dataMap) {
+            let h;
+            h = `
         <div class="card-beach">
     <img
       src="${`${dataMap?.image}`}"
       alt=""  
       class="card-image-beach"
     />
-    <h3 class="card-title" onclick="myFunction('${dataMap?.name}', '${dataMap?.origin.name
-            }')">${dataMap?.name}</h3>
+    <h3 class="card-title" onclick="myFunction('${dataMap}', '${dataMap?.origin.name
+              }')">${dataMap?.name}</h3>
         </div>
         `;
 
-          return h;
-        });
+            return h;
+          });
 
-        items.innerHTML = `${f?.join("")}`;
-      } catch (e) { }
-    }
+          items.innerHTML = `${f?.join("")}`;
+        } catch (e) { }
+      }
 
-    initApp();
+      initApp();
 
 
-    function myFunction(nombre, origen) {
-      console.log(nombre)
-    }
-  </script>
-</body>
+      function myFunction(data) {
+      }
+    </script>
+  </body>
 
 </html>

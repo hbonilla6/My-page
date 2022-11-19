@@ -79,9 +79,11 @@
     width: 300px;
     margin-top: 35px;
   }
-   .capitalize input{
-    text-transform: capitalize;
-  }
+
+  .inputBox:has(input:required) span::after{
+    content: " *";
+    color: red;
+}
   
   .inputBox input {
     position: relative;
